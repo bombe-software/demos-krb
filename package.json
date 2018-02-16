@@ -1,0 +1,22 @@
+{
+  "name": "demos-krb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodeindex.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "crypto-js": "^3.1.9-1",
+    "express": "^4.16.2",
+    "mongoose": "^5.0.6",
+    "nodemailer": "^4.4.2",
+    "nodemon": "^1.15.0"
+  }
+}
