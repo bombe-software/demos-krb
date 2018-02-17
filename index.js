@@ -45,9 +45,9 @@ app.post('/ticket_controller', ticket_controller.post);
 app.get('/ticket_controller', ticket_controller.post);
 
 
-var confirm_email  = require("./routes/confirm_email");
-app.post('/send_email', confirm_email.sendEmail);
-app.get('/send_email', confirm_email.sendEmail);
+var email  = require("./routes/email");
+app.post('/send_email', email.sendEmail);
+app.get('/send_email', email.sendEmail);
 
 /*
  *	Poner a la escucha el servidor 
