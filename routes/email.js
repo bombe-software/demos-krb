@@ -6,7 +6,6 @@ exports.sendEmail = function (request, response) {
     response.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
     const {email, id_usuario}  = request.body;
     let firma = SHA256("Como estas?" + email + "Yo jaiba y tu?" + id_usuario).toString();
-    console.log(email, id_usuario,firma);
     let cifrado = rsa.cifrar(firma, 41, 309);
     // Definimos el transporter
     const transporter = nodemailer.createTransport({
