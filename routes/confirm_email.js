@@ -1,40 +1,44 @@
 const nodemailer = require('nodemailer');
-const axios = require('axios');
 const SHA256 = require("crypto-js/sha256");
 const rsa = require('./../security/rsa/rsa');
 // email sender function
-exports.sendEmail = function (req, res) {
+exports.sendEmail = function (request, response) {
     response.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
-    let firma = SHA256("Como estas?" + request.body.email + "Yo jaiba y tu?" + request.body.id_usuario).toString();
-    let cifrado = rsa.cifrar(firma, 41, 309);
+    const {email, id_usuario}  = request.body;
+    /*
+        const email = "drasa_00@hotmail.com";
+        const id_usuario = "12";
+    */
 
+    let firma = SHA256("Como estas?" + email + "Yo jaiba y tu?" + id_usuario).toString();
+    let cifrado = rsa.cifrar(firma, 41, 309);
+    console.log(request);
     // Definimos el transporter
     const transporter = nodemailer.createTransport({
-        service: 'Gmail',
+        service: 'Hotmail',
         auth: {
-            user: 'example@gmail.com',
-            pass: 'password'
+            user: 'drasa_tec@hotmail.com',
+            pass: 'Cometa204'
         }
     });
     // Definimos el email
     const mailOptions = {
         from: 'Bombe sofwtare',
-        to: request.body.email,
+        to: email,
         subject: 'Confirmacion de correo',
         text: "Saludos, tu codigo de acceso es: " + cifrado
     };
     // Enviamos el email
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
-            console.log(error);
-            res.write(500, err.message);
+            response.write(JSON.stringify({message: error.message}));
         } else {
-            res.write(SON.stringify({message: "Todo"}));
+            response.write(JSON.stringify({message: "Todo"}));
         }
+        response.end();
     });
-    res.end();
 };
-
+/*
 exports.confirmar_usuario = function (request, response) {
     let rsa = require('./../security/rsa/rsa');
     var id_usuario = 0;
@@ -71,3 +75,4 @@ exports.confirmar_usuario = function (request, response) {
             }
         });
 };
+*/

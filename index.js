@@ -6,11 +6,20 @@ var http = require('http').Server(app);
 var bodyParser =  require("body-parser");
 const cors = require('cors');
 //Configruacion del CORS
-const corsOptions = {
-    origin: 'http://localhost:9000',
-    credentials: true,
-}
-app.use(cors(corsOptions));
+
+var whitelist = ['http://localhost:9000', 'http://localhost:3000'];
+
+var corsOptions = {
+    origin: function (origin, callback) {
+      if (whitelist.indexOf(origin) !== -1) {
+        callback(null, true)
+      } else {
+        callback(new Error('Not allowed by CORS'))
+      }
+    }
+  }
+
+app.use(cors());
 
 
 const mongoose = require('mongoose');
@@ -34,6 +43,11 @@ app.use(bodyParser.json());
 var ticket_controller  = require("./routes/ticket_controller");
 app.post('/ticket_controller', ticket_controller.post);
 app.get('/ticket_controller', ticket_controller.post);
+
+
+var confirm_email  = require("./routes/confirm_email");
+app.post('/send_email', confirm_email.sendEmail);
+app.get('/send_email', confirm_email.sendEmail);
 
 /*
  *	Poner a la escucha el servidor 
