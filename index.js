@@ -49,6 +49,8 @@ var email  = require("./routes/email");
 app.post('/send_email', email.sendEmail);
 app.get('/send_email', email.sendEmail);
 
+var recoverPassword = require("./routes/recover_password")
+app.post('/recover_password' , recoverPassword.sendEmail);
 /*
  *	Poner a la escucha el servidor 
  */
