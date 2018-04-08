@@ -6,19 +6,6 @@ var http = require('http').Server(app);
 var bodyParser =  require("body-parser");
 const cors = require('cors');
 //Configruacion del CORS
-
-var whitelist = ['http://localhost:9000', 'http://localhost:3000'];
-
-var corsOptions = {
-    origin: function (origin, callback) {
-      if (whitelist.indexOf(origin) !== -1) {
-        callback(null, true)
-      } else {
-        callback(new Error('Not allowed by CORS'))
-      }
-    }
-  }
-
 app.use(cors());
 
 
@@ -29,8 +16,8 @@ const config = {
     user: 'admin',
     password: 'n0m3l0',
 }
-//const MONGO_URI = `mongodb://localhost/demos_db`;
-const MONGO_URI = `mongodb://${config.user}:${config.password}@ds255767.mlab.com:55767/demos_db`;
+
+const MONGO_URI = require('./deploy').MONGO_URI;
 mongoose.Promise = require('bluebird');
 mongoose.connect(MONGO_URI).catch(err => console.error(err));
 
