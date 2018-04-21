@@ -1,14 +1,8 @@
 //Comentar o descomentar segun sea el caso
 
-<<<<<<< HEAD
 /**
  * Variables de deploy
 
-=======
-
- //Variables de deploy
- 
->>>>>>> 64aaaab8646ff87320402a0065a738dd1047edc0
 exports.demos_web_http = 'https://www.demos-web.com';
 exports.demos_krb_http = "https://demos-krb.herokuapp.com";
 exports.demos_gql_http = "https://demos-gql.herokuapp.com";
