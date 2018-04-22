@@ -25,7 +25,7 @@ exports.sendEmail = function (request, response) {
         from: '"Bombe software " <info@bombesoftware.com>',
         to: email,
         subject: 'Confirmacion de correo',
-        html: `<p>Tu codigo es: <b>${cifrado}</b></p>`
+        html: `<p>Tu codigo es: <b>${cifrado}</b></p><p>No sabes donde colocar este codigo entra este link: <a href='https://www.demos-web.com/confirm_email'>https://www.demos-web.com/confirm_email</a></p>`
     };
     // Enviamos el email
     transporter.sendMail(mailOptions, function (error, info) {
