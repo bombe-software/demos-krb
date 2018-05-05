@@ -4,7 +4,10 @@
 var app = require('express')();
 var http = require('http').Server(app);
 var bodyParser =  require("body-parser");
+//var multipart = require('connect-multiparty');
+//var multipartMiddleware = multipart();
 const cors = require('cors');
+const fileUpload = require('express-fileupload');
 //Configruacion del CORS
 app.use(cors());
 
@@ -23,7 +26,7 @@ mongoose.connect(MONGO_URI).catch(err => console.error(err));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
+app.use(fileUpload());
 /*
  *	Configuracion de las rutas
  */ 
@@ -35,6 +38,10 @@ app.get('/ticket_controller', ticket_controller.post);
 var email  = require("./routes/email");
 app.post('/send_email', email.sendEmail);
 app.get('/send_email', email.sendEmail);
+
+var uploadFile  = require("./routes/uploadfile");
+app.post('/uploadFile', uploadFile.Uploads);
+app.get('/uploadFile', uploadFile.Uploads);
 
 var recoverPassword = require("./routes/recover_password")
 app.post('/recover_password' , recoverPassword.sendEmail);
