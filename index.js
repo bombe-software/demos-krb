@@ -43,6 +43,10 @@ var uploadFile  = require("./routes/uploadfile");
 app.post('/uploadFile', uploadFile.Uploads);
 app.get('/uploadFile', uploadFile.Uploads);
 
+var img  = require("./routes/img");
+app.post(/img/, img.send);
+app.get(/img/, img.send);
+
 var recoverPassword = require("./routes/recover_password")
 app.post('/recover_password' , recoverPassword.sendEmail);
 /*
