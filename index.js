@@ -43,6 +43,10 @@ var uploadFile  = require("./routes/uploadfile");
 app.post('/uploadFile', uploadFile.Uploads);
 app.get('/uploadFile', uploadFile.Uploads);
 
+var changeFile  = require("./routes/changefile");
+app.post('/changeFile', changeFile.ChangeRoute);
+app.get('/changeFile', changeFile.ChangeRoute);
+
 var img  = require("./routes/img");
 app.post(/img/, img.send);
 app.get(/img/, img.send);
